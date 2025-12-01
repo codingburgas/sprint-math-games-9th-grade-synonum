@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\SynoNum\\sprint-math-games-9th-grade-synonum-main\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EFC01DC4-17C0-4B44-AA17-D87633F9E6AA}|synonum\\synonum.vcxproj|D:\\Projects\\SynoNum\\sprint-math-games-9th-grade-synonum-main\\synonum\\synonum.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EFC01DC4-17C0-4B44-AA17-D87633F9E6AA}|synonum\\synonum.vcxproj|solutionrelative:synonum\\synonum.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "synonum.cpp",
+              "DocumentMoniker": "D:\\Projects\\SynoNum\\sprint-math-games-9th-grade-synonum-main\\synonum\\synonum.cpp",
+              "RelativeDocumentMoniker": "synonum\\synonum.cpp",
+              "ToolTip": "D:\\Projects\\SynoNum\\sprint-math-games-9th-grade-synonum-main\\synonum\\synonum.cpp",
+              "RelativeToolTip": "synonum\\synonum.cpp",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAAAIQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-26T18:35:50.589Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

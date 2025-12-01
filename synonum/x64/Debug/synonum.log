@@ -1,0 +1,3 @@
+﻿  synonum.cpp
+D:\Projects\SynoNum\sprint-math-games-9th-grade-synonum-main\synonum\synonum.cpp(6,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  synonum.vcxproj -> D:\Projects\SynoNum\sprint-math-games-9th-grade-synonum-main\x64\Debug\synonum.exe

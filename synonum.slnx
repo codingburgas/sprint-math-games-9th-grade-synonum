@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="synonum/synonum.vcxproj" Id="efc01dc4-17c0-4b44-aa17-d87633f9e6aa" />
+</Solution>
