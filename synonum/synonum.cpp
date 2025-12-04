@@ -107,39 +107,55 @@ int main() {
         "horizon",
         "ember"
     };
-    string answer = secretWords[rand() % 100];
-    string guessedWord(answer.length(), '_');
-    int lives = 5;
-    char guess;
 
-    while (lives > 0 && guessedWord != answer) {
-        cout << "Word: " << guessedWord << endl;
-        cout << "Lives left: " << lives << endl;
-        cout << "Enter a letter: ";
-        cin >> guess;
+	char playAgain = 'Y';
 
-        bool found = false;
+	while (playAgain == 'Y' || playAgain == 'y') {
 
-        for (int i = 0; i < answer.length(); i++) {
-            if (answer[i] == guess) {
-                guessedWord[i] = guess;
-                found = true;
+        string answer = secretWords[rand() % 100];
+        string guessedWord(answer.length(), '_');
+        int lives = 5;
+        char guess;
+
+        cout << "\n=== New Game Started! ===\n\n";
+
+        while (lives > 0 && guessedWord != answer) {
+            cout << "Word: " << guessedWord << endl;
+            cout << "Lives left: " << lives << endl;
+            cout << "Enter a letter: ";
+            cin >> guess;
+
+            bool found = false;
+
+            for (int i = 0; i < answer.length(); i++) {
+                if (answer[i] == guess) {
+                    guessedWord[i] = guess;
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                lives--;
+                cout << "\nWrong letter!\n" << endl;
+
+
             }
         }
 
-        if (!found) {
-            lives--;
-            cout << "Wrong letter!" << endl;
+    
+ 
+
+        if (guessedWord == answer) {
+            cout << "You guessed the word: " << answer << endl;
         }
-    }  
+        else {
+            cout << "You lost! The word was: " << answer << endl;
+        }
 
+        cout << "\nWould you like to play again? (Y/N): ";
+        cin >> playAgain;
+    }
     
+    cout << "\nThank you for playing!\n";
+} 
 
-    if (guessedWord == answer) {
-        cout << "You guessed the word: " << answer << endl;
-    }
-    else {
-        cout << "You lost! The word was: " << answer << endl;
-    }
-}
-    
