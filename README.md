@@ -1,11 +1,12 @@
 <h1 align="center"> Synonum </h1>
 
-<p align="center">
-
-
-</p>
+<img src="synonum/Logo/logoSynonum" align="center" width="35%" alt="SynoNum logo">
 
 <h2 align="center"> ✨ Our Project ✨ </h2>
+
+<p align="center">
+Our project offers a set of fun, simple math and word games that challenge your thinking while staying easy to pick up and play. Each game is designed to be engaging, replayable, and enjoyable for players of all ages.
+</p>
 
 <h2> 🌟 Why you should choose us: </h2>
 
