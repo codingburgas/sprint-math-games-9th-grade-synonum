@@ -1,6 +1,6 @@
 <h1 align="center"> Synonum </h1>
 
-<img src="synonum/Logo/logoSynonum" align="center" width="35%" alt="SynoNum logo">
+<img src="synonum/Logo/logoSynonum.png" align="center" width="35%" alt="SynoNum logo">
 
 <h2 align="center"> ✨ Our Project ✨ </h2>
 
