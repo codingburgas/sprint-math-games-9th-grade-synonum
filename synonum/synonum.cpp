@@ -70,6 +70,7 @@ int hangingMan() {
 	}
 
 	cout << "\nThank you for playing!\n";
+	return 1;
 }
 
 int mathQuiz() {
