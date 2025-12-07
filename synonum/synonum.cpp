@@ -36,8 +36,24 @@ int hangingMan() {
 		while (lives > 0 && guessedWord != answer) {
 			cout << "Word: " << guessedWord << endl;
 			cout << "Lives left: " << lives << endl;
-			cout << "Enter a letter: ";
-			cin >> guess;
+
+			string input;
+			while (true) {
+				cout << "Enter a letter: ";
+				cin >> input;
+				cout << "\n";
+
+				if (input.length() != 1 || !isalpha(input[0])) {
+					cout << "\nInvalid input. Please enter a single letter.\n";
+					cin.clear();
+					cin.ignore(10000, '\n');
+				}
+				else {
+					guess = tolower(input[0]);
+					break;
+				}
+			}
+
 
 			bool found = false;
 
@@ -64,12 +80,30 @@ int hangingMan() {
 		}
 
 		cout << "----------------------------------------\n";
-		cout << "\nWould you like to play again?\n";
-		cout << " - Yes\n";
-		cout << " - No\n";
-		cout << "Your answer here: ";
-		cin >> playAgain;
-		system("cls");
+
+		while (true) {
+			cout << "\nWould you like to play again?\n";
+			cout << " - Yes\n";
+			cout << " - No\n";
+			cout << "Your answer here: ";
+			cin >> playAgain;
+
+			string playAgainLower = playAgain;
+			for (char& c : playAgainLower) c = tolower(c);
+
+			if (playAgainLower == "yes") {
+				system("cls");
+				break;
+			}
+			else if (playAgainLower == "no") {
+				system("cls");
+				return 0;
+			}
+			else {
+				cout << "\nWrong input, try again.\n";
+			}
+		}
+
 	}
 
 	cout << "\nThank you for playing!\n";
@@ -97,12 +131,23 @@ int mathQuiz() {
 		while (validChoice == false) {
 
 			cout << "=== Math Quiz Started! ===\n\n";
-			cout << "Select a mode:\n"
-				<< "1. Addition\n"
-				<< "2. Subtraction\n"
-				<< "3. Multiplication\n"
-				<< "4. Division\n\n";
+			cout << "Select a mode:\n";
+			cout << "1. Addition\n";
+			cout << "2. Subtraction\n";
+			cout << "3. Multiplication\n";
+			cout << "4. Division\n\n";
+
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(10000, '\n');
+					system("cls");
+					cout << "\nInvalid input. Please enter a number: \n";
+					continue;
+				}
+
+			cout << "Your answer here: ";
 			cin >> choice;
+			system("cls");
 
 			if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
 				cout << "\nInvalid choice. Please select a valid game mode.\n";
@@ -122,15 +167,25 @@ int mathQuiz() {
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " + " << b << " ?\n";
+
+				cout << "Your answer here: ";
 				cin >> answer;
 
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(10000, '\n');
+					system("cls");
+					cout << "Invalid input. Please enter a number!\n";
+					continue;
+				}
+
 				if (answer == a + b) {
-					cout << "Correct!\n";
+					cout << "\nCorrect!\n";
 					cout << "----------------------------------------\n";
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 				else {
-					cout << "Incorrect. The correct answer is " << a + b << ".\n";
+					cout << "\nIncorrect. The correct answer is " << a + b << ".\n";
 					cout << "----------------------------------------\n";
 					--lives;
 					cout << "Lives remaining: " << lives << ".\n";
@@ -139,13 +194,30 @@ int mathQuiz() {
 
 			if (lives == 0) {
 				cout << "\nGame Over! You've run out of lives.";
-				cout << "----------------------------------------\n";
-				cout << "\nWould you like to play again?\n";
-				cout << " - Yes\n";
-				cout << " - No\n";
-				cout << "Your answer here: ";
-				cin >> playAgain;
-				system("cls");
+				cout << "\n----------------------------------------\n";
+
+				while (true) {
+					cout << "\nWould you like to play again?\n";
+					cout << " - Yes\n";
+					cout << " - No\n";
+					cout << "Your answer here: ";
+					cin >> playAgain;
+
+					string playAgainLower = playAgain;
+					for (char& c : playAgainLower) c = tolower(c);
+
+					if (playAgainLower == "yes") {
+						system("cls");
+						break;
+					}
+					else if (playAgainLower == "no") {
+						system("cls");
+						return 0;
+					}
+					else {
+						cout << "\nWrong input, try again.\n";
+					}
+				}
 			}
 		}
 
@@ -158,15 +230,25 @@ int mathQuiz() {
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " - " << b << " ?\n";
+
+				cout << "Your answer here: ";
 				cin >> answer;
 
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(10000, '\n');
+					system("cls");
+					cout << "Invalid input. Please enter a number!\n";
+					continue;
+				}
+
 				if (answer == a - b) {
-					cout << "Correct!\n";
+					cout << "\nCorrect!\n";
 					cout << "----------------------------------------\n";
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 				else {
-					cout << "Incorrect. The correct answer is " << a - b << ".\n";
+					cout << "\nIncorrect. The correct answer is " << a - b << ".\n";
 					cout << "----------------------------------------\n";
 					--lives;
 					cout << "Lives remaining: " << lives << ".\n";
@@ -175,13 +257,31 @@ int mathQuiz() {
 
 			if (lives == 0) {
 				cout << "\nGame Over! You've run out of lives.";
-				cout << "----------------------------------------\n";
-				cout << "\nWould you like to play again?\n";
-				cout << " - Yes\n";
-				cout << " - No\n";
-				cout << "Your answer here: ";
-				cin >> playAgain;
-				system("cls");
+				cout << "\n----------------------------------------\n";
+				
+				while (true) {
+					cout << "\nWould you like to play again?\n";
+					cout << " - Yes\n";
+					cout << " - No\n";
+					cout << "Your answer here: ";
+					cin >> playAgain;
+
+					string playAgainLower = playAgain;
+					for (char& c : playAgainLower) c = tolower(c);
+
+					if (playAgainLower == "yes") {
+						system("cls");
+						break;
+					}
+					else if (playAgainLower == "no") {
+						system("cls");
+						return 0;
+					}
+					else {
+						cout << "\nWrong input, try again.\n";
+					}
+				}
+
 			}
 
 		}
@@ -194,15 +294,25 @@ int mathQuiz() {
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " * " << b << " ?\n";
+
+				cout << "Your answer here: ";
 				cin >> answer;
 
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(10000, '\n');
+					system("cls");
+					cout << "Invalid input. Please enter a number!\n";
+					continue;
+				}
+
 				if (answer == a * b) {
-					cout << "Correct!\n";
+					cout << "\nCorrect!\n";
 					cout << "----------------------------------------\n";
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 				else {
-					cout << "Incorrect. The correct answer is " << a * b << ".\n";
+					cout << "\nIncorrect. The correct answer is " << a * b << ".\n";
 					cout << "----------------------------------------\n";
 					--lives;
 					cout << "Lives remaining: " << lives << ".\n";
@@ -211,13 +321,31 @@ int mathQuiz() {
 
 			if (lives == 0) {
 				cout << "\nGame Over! You've run out of lives.";
-				cout << "----------------------------------------\n";
-				cout << "\nWould you like to play again?\n";
-				cout << " - Yes\n";
-				cout << " - No\n";
-				cout << "Your answer here: ";
-				cin >> playAgain;
-				system("cls");
+				cout << "\n----------------------------------------\n";
+				
+				while (true) {
+					cout << "\nWould you like to play again?\n";
+					cout << " - Yes\n";
+					cout << " - No\n";
+					cout << "Your answer here: ";
+					cin >> playAgain;
+
+					string playAgainLower = playAgain;
+					for (char& c : playAgainLower) c = tolower(c);
+
+					if (playAgainLower == "yes") {
+						system("cls");
+						break;
+					}
+					else if (playAgainLower == "no") {
+						system("cls");
+						return 0;
+					}
+					else {
+						cout << "\nWrong input, try again.\n";
+					}
+				}
+
 			}
 
 		}
@@ -230,7 +358,17 @@ int mathQuiz() {
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " / " << b << " ?\n";
+
+				cout << "Your answer here: ";
 				cin >> answer;
+
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(10000, '\n');
+					system("cls");
+					cout << "Invalid input. Please enter a number!\n";
+					continue;
+				}
 
 				if (answer == a / b) {
 					cout << "\nCorrect!\n";
@@ -248,12 +386,30 @@ int mathQuiz() {
 			if (lives == 0) {
 				cout << "\nGame Over! You've run out of lives.";
 				cout << "\n----------------------------------------\n";
-				cout << "\nWould you like to play again?\n";
-				cout << " - Yes\n";
-				cout << " - No\n";
-				cout << "Your answer here: ";
-				cin >> playAgain;
-				system("cls");
+				
+				while (true) {
+					cout << "\nWould you like to play again?\n";
+					cout << " - Yes\n";
+					cout << " - No\n";
+					cout << "Your answer here: ";
+					cin >> playAgain;
+
+					string playAgainLower = playAgain;
+					for (char& c : playAgainLower) c = tolower(c);
+
+					if (playAgainLower == "yes") {
+						system("cls");
+						break;
+					}
+					else if (playAgainLower == "no") {
+						system("cls");
+						return 0;
+					}
+					else {
+						cout << "\nWrong input, try again.\n";
+					}
+				}
+
 			}
 
 		}
@@ -287,6 +443,14 @@ int guessNumber() {
 			cout << "\nEnter your guess: ";
 			cin >> guess;
 
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(10000, '\n');
+				system("cls");
+				cout << "Invalid input. Please enter a number: \n\n";
+				continue;
+			}
+
 			if (guess == num) {
 				cout << "\nCorrect! You've guessed the number!\n";
 				cout << "----------------------------------------\n";
@@ -313,13 +477,28 @@ int guessNumber() {
 			}
 		}
 
-		cout << "Would you like to play again?\n";
-		cout << " - Yes\n";
-		cout << " - No\n";
-		cout << "Your answer here: ";
-		cin >> playAgain;
-		system("cls");
-		cout << "\n";
+		while (true) {
+			cout << "\nWould you like to play again?\n";
+			cout << " - Yes\n";
+			cout << " - No\n";
+			cout << "Your answer here: ";
+			cin >> playAgain;
+
+			string playAgainLower = playAgain;
+			for (char& c : playAgainLower) c = tolower(c);
+
+			if (playAgainLower == "yes") {
+				system("cls");
+				break;
+			}
+			else if (playAgainLower == "no") {
+				system("cls");
+				return 0;
+			}
+			else {
+				cout << "\nWrong input, try again.\n";
+			}
+		}
 
 	}
 	cout << "Good Game! See you next time.\n";
@@ -417,16 +596,16 @@ int wordList() {
 		cout << "2. Return to Main Menu\n\n";
 		cout << "Your answer here: ";
 
+		int option = 0;
+		cin >> option;
+
 		if (cin.fail()) {
 			cin.clear();
 			cin.ignore(10000, '\n');
 			system("cls");
-			cout << "Invalid input. Please enter a number: ";
+			cout << "Invalid input. Please enter a number: \n";
 			continue;
 		}
-
-		int option = 0;
-		cin >> option;
 
 		switch (option) {
 		case 1:
@@ -465,7 +644,7 @@ int mathList() {
 			cin.clear();
 			cin.ignore(10000, '\n');
 			system("cls");
-			cout << "Invalid input. Please enter a number: ";
+			cout << "Invalid input. Please enter a number: \n";
 			continue;
 		}
 
