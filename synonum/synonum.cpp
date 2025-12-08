@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include <ctime>
+
+// Add all the needed libraries 
 
 using namespace std;
 
-int hangingMan() {
-	srand(time(0));
+int hangingMan() { // Create a function for the hangman game
 
 	string secretWords[100] = {
 	"apple", "mirror", "light", "river", "breeze", "carpet", "galaxy", "thunder",
@@ -20,36 +20,36 @@ int hangingMan() {
 	"plume", "flourish", "moss", "grain", "pocket", "chair", "habit", "spark",
 	"thread", "sunburn", "grove", "quartz", "house", "ember", "lantern", "brown",
 	"gravel", "honey", "ticket", "place", "whole", "spruce", "cargo", "plastic"
-	};
+	}; // Create an array of 100 secret words
 
 	string playAgain = "Yes";
 
-	while (playAgain == "Yes" || playAgain == "yes") {
+	while (playAgain == "Yes" || playAgain == "yes") { // Set a cycle for replaying the game
 
-		string answer = secretWords[rand() % 100];
-		string guessedWord(answer.length(), '_');
+		string answer = secretWords[rand() % 100]; // Select a random word from the array
+		string guessedWord(answer.length(), '_'); // Create a string of underscores with the same length as the answer
 		int lives = 5;
 		char guess;
 
 		cout << "=== Hangman Game Started! ===\n\n";
 
-		while (lives > 0 && guessedWord != answer) {
+		while (lives > 0 && guessedWord != answer) { // Creates a loop that continues until the player runs out of lives or guesses the word
 			cout << "Word: " << guessedWord << endl;
 			cout << "Lives left: " << lives << endl;
 
 			string input;
-			while (true) {
+			while (true) { // Create a loop that checks for valid or invalid input
 				cout << "Enter a letter: ";
 				cin >> input;
 				cout << "\n";
 
-				if (input.length() != 1 || !isalpha(input[0])) {
+				if (input.length() != 1 || !isalpha(input[0])) { // Check if the input is a single letter
 					cout << "\nInvalid input. Please enter a single letter.\n";
-					cin.clear();
-					cin.ignore(10000, '\n');
+					cin.clear(); // Clear the error flag on cin
+					cin.ignore(10000, '\n'); // Discard invalid input
 				}
 				else {
-					guess = tolower(input[0]);
+					guess = tolower(input[0]); // Convert the input to lowercase
 					break;
 				}
 			}
@@ -57,14 +57,14 @@ int hangingMan() {
 
 			bool found = false;
 
-			for (int i = 0; i < answer.length(); i++) {
-				if (answer[i] == guess) {
+			for (int i = 0; i < answer.length(); i++) { // Check if the guessed letter is in the answer
+				if (answer[i] == guess) { // If the letter is found, update the guessedWord
 					guessedWord[i] = guess;
 					found = true;
 				}
 			}
 
-			if (!found) {
+			if (!found) { // If the letter is not found, decrease lives by 1
 				lives--;
 				cout << "\nWrong letter!\n" << endl;
 
@@ -72,35 +72,35 @@ int hangingMan() {
 			}
 		}
 
-		if (guessedWord == answer) {
+		if (guessedWord == answer) { // Checks if the player has guessed the word
 			cout << "Good job! You guessed the word: " << answer << endl;
 		}
 		else {
-			cout << "You lost! The word was: " << answer << endl;
+			cout << "You lost! The word was: " << answer << endl; // When a player runs out of lives reveal the answer
 		}
 
 		cout << "----------------------------------------\n";
 
-		while (true) {
+		while (true) { // A loop to ask the player if they want to play again
 			cout << "\nWould you like to play again?\n";
 			cout << " - Yes\n";
 			cout << " - No\n";
 			cout << "Your answer here: ";
 			cin >> playAgain;
 
-			string playAgainLower = playAgain;
-			for (char& c : playAgainLower) c = tolower(c);
+			string playAgainLower = playAgain; // Create a new string variable to store the lowercase version of playAgain
+			for (char& c : playAgainLower) c = tolower(c); // Convert the string to lowercase
 
 			if (playAgainLower == "yes") {
 				system("cls");
-				break;
+				break; // Exit the loop to replay the game
 			}
 			else if (playAgainLower == "no") {
 				system("cls");
-				return 0;
+				return 0; // Exit the function
 			}
 			else {
-				cout << "\nWrong input, try again.\n";
+				cout << "\nWrong input, try again.\n"; 
 			}
 		}
 
@@ -111,45 +111,45 @@ int hangingMan() {
 	return 1;
 }
 
-int mathQuiz() {
+int mathQuiz() { // Create a function for the math quiz game
 
-	int numA[10]={ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	int numA[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // Create two arrays of numbers to use in the math problems
 	int numB[10]={ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 	int a = 0;
 	int b = 0;
-	int answer = 0;
-	int choice = 0;
+	int answer = 0; // Variables to store the player's answer
+	int choice = 0; // Variable to store the player's choice of game mode
 
 	string playAgain = "Yes";
 
-	while (playAgain == "Yes" || playAgain == "yes") {
+	while (playAgain == "Yes" || playAgain == "yes") { // Set a cycle for replaying the game
 
 		int lives = 5;
 		bool validChoice = false;
 
-		while (validChoice == false) {
+		while (validChoice == false) { // Loop to ensure the player selects a valid game mode
 
-			cout << "=== Math Quiz Started! ===\n\n";
+			cout << "=== Math Quiz Started! ===\n\n"; // Display the game mode options
 			cout << "Select a mode:\n";
 			cout << "1. Addition\n";
 			cout << "2. Subtraction\n";
 			cout << "3. Multiplication\n";
 			cout << "4. Division\n\n";
 
-				if (cin.fail()) {
-					cin.clear();
-					cin.ignore(10000, '\n');
-					system("cls");
+				if (cin.fail()) { // Check for invalid input
+					cin.clear(); // Clear the error flag on cin
+					cin.ignore(10000, '\n'); // Discard invalid input
+					system("cls"); // Clear the console
 					cout << "\nInvalid input. Please enter a number: \n";
-					continue;
+					continue; // Restart the loop
 				}
 
 			cout << "Your answer here: ";
-			cin >> choice;
+			cin >> choice; // Get the player's choice
 			system("cls");
 
-			if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+			if (choice != 1 && choice != 2 && choice != 3 && choice != 4) { // Check if the choice is valid
 				cout << "\nInvalid choice. Please select a valid game mode.\n";
 			}
 			else {
@@ -158,12 +158,12 @@ int mathQuiz() {
 			}
 		}
 
-		if (choice == 1) {
+		if (choice == 1) { // If the player selects the first option, start the addition game
 
 			cout << "Starting Addition Game...\n";
 
-			while (lives > 0) {
-				a = numA[rand() % 10];
+			while (lives > 0) { // Loop until the player runs out of lives
+				a = numA[rand() % 10]; // Select two random numbers from the arrays
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " + " << b << " ?\n";
@@ -171,15 +171,15 @@ int mathQuiz() {
 				cout << "Your answer here: ";
 				cin >> answer;
 
-				if (cin.fail()) {
+				if (cin.fail()) { // Check for invalid input
 					cin.clear();
 					cin.ignore(10000, '\n');
 					system("cls");
 					cout << "Invalid input. Please enter a number!\n";
-					continue;
+					continue; // Restart the loop
 				}
 
-				if (answer == a + b) {
+				if (answer == a + b) { // Check if the player's answer is correct
 					cout << "\nCorrect!\n";
 					cout << "----------------------------------------\n";
 					cout << "Lives remaining: " << lives << ".\n";
@@ -187,32 +187,32 @@ int mathQuiz() {
 				else {
 					cout << "\nIncorrect. The correct answer is " << a + b << ".\n";
 					cout << "----------------------------------------\n";
-					--lives;
+					--lives; // Decrease lives by 1 for an incorrect answer
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 			}
 
-			if (lives == 0) {
+			if (lives == 0) { // If the player runs out of lives, end the game
 				cout << "\nGame Over! You've run out of lives.";
 				cout << "\n----------------------------------------\n";
 
-				while (true) {
+				while (true) { // A loop to ask the player if they want to play again
 					cout << "\nWould you like to play again?\n";
 					cout << " - Yes\n";
 					cout << " - No\n";
 					cout << "Your answer here: ";
 					cin >> playAgain;
 
-					string playAgainLower = playAgain;
-					for (char& c : playAgainLower) c = tolower(c);
+					string playAgainLower = playAgain; // Create a new string variable to store the lowercase version of playAgain
+					for (char& c : playAgainLower) c = tolower(c); // Convert the string to lowercase
 
 					if (playAgainLower == "yes") {
 						system("cls");
-						break;
+						break; // Exit the loop to replay the game
 					}
 					else if (playAgainLower == "no") {
 						system("cls");
-						return 0;
+						return 0; // Exit the function
 					}
 					else {
 						cout << "\nWrong input, try again.\n";
@@ -221,12 +221,12 @@ int mathQuiz() {
 			}
 		}
 
-		else if (choice == 2) {
+		else if (choice == 2) { // If the player selects the second option, start the subtraction game
 
-			cout << "Starting Subtraction Game...\n";
+			cout << "Starting Subtraction Game...\n"; 
 
-			while (lives > 0) {
-				a = numA[rand() % 10];
+			while (lives > 0) { // Loop until the player runs out of lives
+				a = numA[rand() % 10]; // Select two random numbers from the arrays
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " - " << b << " ?\n";
@@ -234,12 +234,12 @@ int mathQuiz() {
 				cout << "Your answer here: ";
 				cin >> answer;
 
-				if (cin.fail()) {
+				if (cin.fail()) { // Check for invalid input
 					cin.clear();
 					cin.ignore(10000, '\n');
 					system("cls");
 					cout << "Invalid input. Please enter a number!\n";
-					continue;
+					continue; // Restart the loop
 				}
 
 				if (answer == a - b) {
@@ -250,7 +250,7 @@ int mathQuiz() {
 				else {
 					cout << "\nIncorrect. The correct answer is " << a - b << ".\n";
 					cout << "----------------------------------------\n";
-					--lives;
+					--lives; // Decrease lives by 1 for an incorrect answer
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 			}
@@ -259,23 +259,23 @@ int mathQuiz() {
 				cout << "\nGame Over! You've run out of lives.";
 				cout << "\n----------------------------------------\n";
 				
-				while (true) {
+				while (true) { // A loop to ask the player if they want to play again
 					cout << "\nWould you like to play again?\n";
 					cout << " - Yes\n";
 					cout << " - No\n";
 					cout << "Your answer here: ";
 					cin >> playAgain;
 
-					string playAgainLower = playAgain;
-					for (char& c : playAgainLower) c = tolower(c);
+					string playAgainLower = playAgain; // Create a new string variable to store the lowercase version of playAgain
+					for (char& c : playAgainLower) c = tolower(c); // Convert the string to lowercase
 
 					if (playAgainLower == "yes") {
 						system("cls");
-						break;
+						break; // Exit the loop to replay the game
 					}
 					else if (playAgainLower == "no") {
 						system("cls");
-						return 0;
+						return 0; // Exit the function
 					}
 					else {
 						cout << "\nWrong input, try again.\n";
@@ -285,12 +285,12 @@ int mathQuiz() {
 			}
 
 		}
-		else if (choice == 3) {
+		else if (choice == 3) { // If the player selects the third option, start the multiplication game
 
 			cout << "Starting Multiplication Game...\n";
 
-			while (lives > 0) {
-				a = numA[rand() % 10];
+			while (lives > 0) { // Loop until the player runs out of lives
+				a = numA[rand() % 10]; // Select two random numbers from the arrays
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " * " << b << " ?\n";
@@ -298,12 +298,12 @@ int mathQuiz() {
 				cout << "Your answer here: ";
 				cin >> answer;
 
-				if (cin.fail()) {
+				if (cin.fail()) { // Check for invalid input
 					cin.clear();
 					cin.ignore(10000, '\n');
 					system("cls");
 					cout << "Invalid input. Please enter a number!\n";
-					continue;
+					continue; // Restart the loop
 				}
 
 				if (answer == a * b) {
@@ -314,12 +314,12 @@ int mathQuiz() {
 				else {
 					cout << "\nIncorrect. The correct answer is " << a * b << ".\n";
 					cout << "----------------------------------------\n";
-					--lives;
+					--lives; // Decrease lives by 1 for an incorrect answer
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 			}
 
-			if (lives == 0) {
+			if (lives == 0) { // If the player runs out of lives, end the game
 				cout << "\nGame Over! You've run out of lives.";
 				cout << "\n----------------------------------------\n";
 				
@@ -330,16 +330,16 @@ int mathQuiz() {
 					cout << "Your answer here: ";
 					cin >> playAgain;
 
-					string playAgainLower = playAgain;
-					for (char& c : playAgainLower) c = tolower(c);
+					string playAgainLower = playAgain; // Create a new string variable to store the lowercase version of playAgain
+					for (char& c : playAgainLower) c = tolower(c); // Convert the string to lowercase
 
 					if (playAgainLower == "yes") {
 						system("cls");
-						break;
+						break; // Exit the loop to replay the game
 					}
 					else if (playAgainLower == "no") {
 						system("cls");
-						return 0;
+						return 0; // Exit the function
 					}
 					else {
 						cout << "\nWrong input, try again.\n";
@@ -349,25 +349,25 @@ int mathQuiz() {
 			}
 
 		}
-		else if (choice == 4) {
+		else if (choice == 4) { // If the player selects the fourth option, start the division game
 
-			cout << "Starting Division Game...\n";
+			cout << "Starting Division Game...\n"; 
 
-			while (lives > 0) {
-				a = numA[rand() % 10];
+			while (lives > 0) { // Loop until the player runs out of lives
+				a = numA[rand() % 10]; // Select two random numbers from the arrays
 				b = numB[rand() % 10];
 
 				cout << "\nWhat is " << a << " / " << b << " ?\n";
 
 				cout << "Your answer here: ";
-				cin >> answer;
+				cin >> answer; 
 
-				if (cin.fail()) {
+				if (cin.fail()) { // Check for invalid input
 					cin.clear();
 					cin.ignore(10000, '\n');
 					system("cls");
 					cout << "Invalid input. Please enter a number!\n";
-					continue;
+					continue; // Restart the loop
 				}
 
 				if (answer == a / b) {
@@ -378,12 +378,12 @@ int mathQuiz() {
 				else {
 					cout << "\nIncorrect. The correct answer is " << a / b << ".\n";
 					cout << "----------------------------------------\n";
-					--lives;
+					--lives; // Decrease lives by 1 for an incorrect answer
 					cout << "Lives remaining: " << lives << ".\n";
 				}
 			}
 
-			if (lives == 0) {
+			if (lives == 0) { // If the player runs out of lives, end the game
 				cout << "\nGame Over! You've run out of lives.";
 				cout << "\n----------------------------------------\n";
 				
@@ -394,16 +394,16 @@ int mathQuiz() {
 					cout << "Your answer here: ";
 					cin >> playAgain;
 
-					string playAgainLower = playAgain;
-					for (char& c : playAgainLower) c = tolower(c);
+					string playAgainLower = playAgain; // Create a new string variable to store the lowercase version of playAgain
+					for (char& c : playAgainLower) c = tolower(c); // Convert the string to lowercase
 
 					if (playAgainLower == "yes") {
 						system("cls");
-						break;
+						break; // Exit the loop to replay the game
 					}
 					else if (playAgainLower == "no") {
 						system("cls");
-						return 0;
+						return 0; // Exit the function
 					}
 					else {
 						cout << "\nWrong input, try again.\n";
@@ -422,51 +422,51 @@ int mathQuiz() {
 
 }
 
-int guessNumber() {
-	int guessNum[100] = {1, 32, 69, 5, 77, 13, 25, 100, 42, 67};
+int guessNumber() { // Create a function for guess the number game
+	int guessNum[100] = { 1, 32, 69, 5, 77, 13, 25, 100, 42, 67 }; // Create an array of 10 random numbers
 
 	int num = 0;
 	int guess = 0;
 
 	string playAgain = "Yes";
 
-	while (playAgain == "Yes" || playAgain == "yes") {
+	while (playAgain == "Yes" || playAgain == "yes") { // Set a cycle for replaying the game
 
 		int lives = 5;
 
 		cout << "=== Guess the Number ===\n\n";
 		cout << "I have selected a number between 1 and 100. Can you guess it?\n";
 
-		num = guessNum[rand() % 10];
+		num = guessNum[rand() % 10]; // Select a random number from the array
 
 		while (lives > 0) {
 			cout << "\nEnter your guess: ";
 			cin >> guess;
 
-			if (cin.fail()) {
+			if (cin.fail()) { // Check for invalid input
 				cin.clear();
 				cin.ignore(10000, '\n');
 				system("cls");
 				cout << "Invalid input. Please enter a number: \n\n";
-				continue;
+				continue; // Restart the loop
 			}
 
 			if (guess == num) {
 				cout << "\nCorrect! You've guessed the number!\n";
 				cout << "----------------------------------------\n";
-				break;
+				break; // Exit the loop if the player guesses correctly
 			} 
 			else {
 				cout << "\nIncorrect guess! \n";
-				--lives;
+				--lives; // Decrease lives by 1 for an incorrect guess
 				cout << "Lives remaining: " << lives << ".\n";
 				cout << "----------------------------------------\n";
 
-				if (guess > num && lives > 0) {
-					cout << "Try a lower number.\n";
+				if (guess > num && lives > 0) { 
+					cout << "Try a lower number.\n"; // If the guessed number is higher than the selected number
 				}
 				else if (guess < num && lives > 0) {
-					cout << "Try a higher number.\n";
+					cout << "Try a higher number.\n"; // If the guessed number is lower than the selected number
 				}
 			}
 
@@ -477,23 +477,23 @@ int guessNumber() {
 			}
 		}
 
-		while (true) {
+		while (true) { // A loop to ask the player if they want to play again
 			cout << "\nWould you like to play again?\n";
 			cout << " - Yes\n";
 			cout << " - No\n";
 			cout << "Your answer here: ";
 			cin >> playAgain;
 
-			string playAgainLower = playAgain;
-			for (char& c : playAgainLower) c = tolower(c);
+			string playAgainLower = playAgain; // Create a new string variable to store the lowercase version of playAgain
+			for (char& c : playAgainLower) c = tolower(c); // Convert the string to lowercase
 
 			if (playAgainLower == "yes") {
 				system("cls");
-				break;
+				break; // Exit the loop to replay the game
 			}
 			else if (playAgainLower == "no") {
 				system("cls");
-				return 0;
+				return 0; // Exit the function
 			}
 			else {
 				cout << "\nWrong input, try again.\n";
@@ -503,10 +503,10 @@ int guessNumber() {
 	}
 	cout << "Good Game! See you next time.\n";
 	system("cls");
-	return 1;
+	return 1; // Exit the function
 }
 
-int help() {
+int help() { // Creates a function for the help page
 	cout << "\n=== Help ===\n\n";
 
 	cout << "This page will help you understand how to use SynoNum.\n\n";
@@ -545,14 +545,14 @@ int help() {
 	cout << "Read About the Games section (option 4).\n\n";
 
 	cout << "Press any key and hit Enter to return to the main menu... ";
-	string temp;
+	string temp; // Create a temporary string variable to hold the input
 	cin >> temp;
 
 	system("cls");
-	return 0;
+	return 0; // Exit the function
 }
 
-int readAboutTheGames() {
+int readAboutTheGames() { // Create a function to explain the games
 	cout << "\n=== About the Games ===\n\n";
 
 	cout << "1. Maths Games\n";
@@ -582,15 +582,15 @@ int readAboutTheGames() {
 	cout << "Both game modes are designed for fun and practice in a simple, friendly way!\n\n";
 
 	cout << "Press any key and hit Enter to return to the main menu... ";
-	string temp;
-	cin >> temp;
+	string temp; // Create a temporary string variable to hold the input
+	cin >> temp; 
 
 	system("cls");
-	return 0;
+	return 0; // Exit the function
 }
 
-int wordList() {
-	while (true) {
+int wordList() { // Create a function for the word games list
+	while (true) { // Set a cycle for the word games menu
 		cout << "\n=== Word Games List ===\n";
 		cout << "1. Hangman\n";
 		cout << "2. Return to Main Menu\n\n";
@@ -599,38 +599,38 @@ int wordList() {
 		int option = 0;
 		cin >> option;
 
-		if (cin.fail()) {
+		if (cin.fail()) { // Check for invalid input
 			cin.clear();
 			cin.ignore(10000, '\n');
 			system("cls");
 			cout << "Invalid input. Please enter a number: \n";
-			continue;
+			continue; // Restart the loop
 		}
 
-		switch (option) {
+		switch (option) { // Different cases depending on the player's choice
 		case 1:
 			cout << endl << "Redirecting you to the hangman game..." << endl;
 			system("cls");
-			hangingMan();
+			hangingMan(); // Redirect to the hangman function
 			break;
 
 		case 2:
 			cout << endl << "Returning to the main menu..." << endl;
 			system("cls");
-			return 0;
+			return 0; // Exit the function to return to the main menu
 			break;
 
 		default:
 			cout << endl << "Please choose a valid option (1-2): ";
-			break;
+			break; // Restart the loop for invalid option
 		}
 
-		return 1;
+		return 1; // Exit the function
 	}
 }
 
-int mathList() {
-	while (true) {
+int mathList() { // Create a function for the maths games list
+	while (true) { // Set a cycle for the maths games menu
 		cout << "\n=== Maths Games List ===\n";
 		cout << "1. Maths Quiz\n";
 		cout << "2. Guess the Number\n";
@@ -640,20 +640,20 @@ int mathList() {
 		int option = 0;
 		cin >> option;
 
-		if (cin.fail()) {
+		if (cin.fail()) { // Check for invalid input
 			cin.clear();
 			cin.ignore(10000, '\n');
 			system("cls");
 			cout << "Invalid input. Please enter a number: \n";
-			continue;
+			continue; // Restart the loop
 		}
 
-		switch (option) {
+		switch (option) { // Different cases depending on the player's choice
 		case 1:
 			cout << endl << "Redirecting you to the math quiz..." << endl;
 			system("cls");
-			mathQuiz();
-			break;
+			mathQuiz(); // Redirect to the math quiz function
+			break; // Exit the switch case
 
 		case 2:
 			cout << endl << "Redirecting you to the guess the number game..." << endl;
@@ -664,19 +664,19 @@ int mathList() {
 		case 3:
 			cout << endl << "Returning to the main menu..." << endl;
 			system("cls");
-			return 0;
+			return 0; // Exit the function to return to the main menu
 			break;
 
 		default:
 			cout << endl << "Please choose a valid option (1-3): ";
 			break;
 		}
-		return 1;
+		return 1; // Exit the function
 	}
 }
 
-int main() {
-	while (true) {
+int main() { // Create the main function that opens when you run the programme
+	while (true) { // Set a cycle for the main menu
 		cout << "==============================\n";
 		cout << "     Welcome to SynoNum!\n";
 		cout << "==============================\n\n";
@@ -691,47 +691,47 @@ int main() {
 		int option = 0;
 		cin >> option;
 
-		if (cin.fail()) {
+		if (cin.fail()) { // Check for invalid input
 			cin.clear();
 			cin.ignore(10000, '\n');
 			system("cls");
 			cout << "Invalid input. Please enter a number. \n\n";
-			continue;
+			continue; // Restart the loop
 		}
 
-		switch (option) {
+		switch (option) { // Different cases depending on the player's choice
 		case 1:
 			cout << endl << "Redirecting you to the list of the maths games ..." << endl;
 			system("cls");
-			mathList();
-			break;
+			mathList(); // Redirect to the maths games list function
+			break; // Exit the switch case
 
 		case 2:
 			cout << endl << "Redirecting you to the list of the word games ..." << endl;
 			system("cls");
-			wordList();
+			wordList(); // Redirect to the word games list function
 			break;
 
 		case 3:
 			cout << endl << "Redirecting you to the help page ..." << endl;
 			system("cls");
-			help();
-			break;
+			help(); // Redirect to the help function
+			break; // Exit the switch case
 
 		case 4:
 			cout << endl << "Redirecting you to the explanation page ..." << endl;
 			system("cls");
-			readAboutTheGames();
+			readAboutTheGames(); // Redirect to the read about the games function
 			break;
 
 		case 5:
 			cout << endl << "Shutting down the programme ... Goodbye!";
 			system("cls");
-			return 0;
+			return 0; // Exit the programme
 
 		default:
 			cout << endl << "Please choose a valid option (1-5): ";
-			break;
+			break; // Restart the loop for invalid option
 		}
 	}
 }
