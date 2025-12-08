@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
+#include <cctype> // For tolower() and isalpha()
+#include <cstdlib> // For rand() and srand()
+#include <ctime> // For time()
 
 using namespace std;
 
 int hangingMan() { // Create a function for the hangman game
 
-	string secretWords[100] = {
+	string secretWords[96] = {
 	"apple", "mirror", "light", "river", "breeze", "carpet", "galaxy", "thunder",
 	"crystal", "meadow", "shadow", "enjoy", "horizon", "puzzle", "shelter", "compass",
 	"fabric", "memory", "harbor", "whisper", "canyon", "blossom", "submit", "marble",
@@ -426,7 +429,8 @@ int mathQuiz() { // Create a function for the math quiz game
 }
 
 int guessNumber() { // Create a function for guess the number game
-	int guessNum[100] = { 1, 32, 69, 5, 77, 13, 25, 100, 42, 67 }; // Create an array of 10 random numbers
+
+	int guessNum[10] = { 1, 32, 69, 5, 77, 13, 25, 100, 42, 67 }; // Create an array of 10 random numbers
 
 	int num = 0;
 	int guess = 0;
@@ -455,7 +459,7 @@ int guessNumber() { // Create a function for guess the number game
 			}
 
 			if (guess == num) {
-				cout << "\nCorrect! You've guessed the number:" << num << " \n";
+				cout << "\nCorrect! You've guessed the number: " << num << " \n";
 				cout << "----------------------------------------\n";
 				break;
 			} 
@@ -683,6 +687,8 @@ int mathList() { // Create a function for the maths games list
 }
 
 int main() { // Create the main function that opens when you run the programme
+	srand(time(0)); // Seed the random number generator with the current time
+
 	while (true) { 
 		cout << "==============================\n";
 		cout << "     Welcome to SynoNum!\n";
