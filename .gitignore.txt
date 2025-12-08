@@ -1,15 +1,1 @@
-.vs/.
-vs/synonum.slnx/FileContentIndex/756e3709-e455-486b-afe3-479842670a91.vsidx
-.vs/synonum.slnx/v18/.suo
-.vs/synonum.slnx/v18/Browse.VC.db
-.vs/synonum.slnx/v18/DocumentLayout.backup.json
-.vs/synonum.slnx/v18/DocumentLayout.json
-.vs/synonum/CopilotIndices/18.0.934.24903/CodeChunks.db
-.vs/synonum/CopilotIndices/18.0.934.24903/SemanticSymbols.db
-synonum/x64/Debug/synonum.ilk
-synonum/x64/Debug/synonum.obj
-synonum/x64/Debug/vc145.idb
-synonum/x64/Debug/vc145.pdb
-x64/Debug/synonum.exe
-x64/Debug/synonum.pdb
-
+.vs/
